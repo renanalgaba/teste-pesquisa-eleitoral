@@ -1,27 +1,138 @@
 # Pesquisa Eleitoral - Intenção de Votos
 
-Esta aplicação foi desenvolvida para estimar a intenção de votos em eleições para presidente do Brasil, com base em pesquisas eleitorais realizadas em municípios de diferentes portes e estados. A aplicação é capaz de importar dados de municípios e estados do IBGE, processar arquivos de pesquisa eleitoral e exibir os resultados em um dashboard.
+Este projeto é uma aplicação Node.js que estima a intenção de votos em eleições para presidente do Brasil, com base em pesquisas eleitorais realizadas em municípios de diferentes portes e estados. A aplicação importa dados de municípios e estados do IBGE, processa arquivos de pesquisa eleitoral e exibe os resultados em um dashboard.
 
-## Requisitos do Desafio
+---
 
-O desafio consiste em criar uma aplicação em Node.js que:
-
-1. **Sincronize dados da base de municípios e estados brasileiros** por meio de um serviço acionado mensalmente ou manualmente.
-2. **Importe arquivos de pesquisa eleitoral**.
-3. **Calcule a intenção de votos** de cada candidato, considerando o porte do município e o estado.
-4. **Exiba a evolução temporal das intenções de votos** em um dashboard simplificado.
-
-## Como Executar a Aplicação
+## Como Executar o Projeto
 
 ### Pré-requisitos
 
 - Node.js (versão 16 ou superior)
 - NPM (geralmente instalado com o Node.js)
-- Git (opcional, para clonar o repositório)
 
-### Passo a Passo
+### Passos para Execução
 
-1. **Clone o repositório**:
+1. Clone o repositório:
+
    ```bash
-   git clone https://github.com/renanalgaba/teste-pesquisa-eleitoral
+   git clone https://github.com/renanalgaba/teste-pesquisa-eleitoral.git
    cd teste-pesquisa-eleitoral
+   ```
+
+Instale as dependências:
+
+    ```bash
+    npm install
+    ```
+
+Certifique-se que o diretório data possui o arquivo P1.csv (ou outro arquivo de pesquisa no formato correto).
+
+Execute o servidor:
+
+```bash
+
+npm start
+```
+
+O servidor estará rodando em http://localhost:3000.
+
+Rotas da Aplicação
+1. Importar Pesquisas Eleitorais
+Endpoint: POST /pesquisa/importar
+
+Descrição: Importa um arquivo CSV de pesquisas eleitorais e salva os dados no arquivo pesquisas.json.
+
+Como usar:
+
+Envie um arquivo CSV no formato correto para o diretório data.
+
+Execute o endpoint:
+
+```bash
+curl -X POST http://localhost:3000/pesquisa/importar
+```
+
+2. Atualizar Base de Municípios e Estados
+Endpoint: POST /atualizar-base
+
+Descrição: Atualiza a base de municípios e estados com dados do IBGE.
+
+Como usar:
+
+Execute o endpoint:
+
+```bash
+
+curl -X POST http://localhost:3000/atualizar-base
+```
+
+3. Visualizar Dashboard
+Endpoint: GET /dashboard
+
+Descrição: Exibe um dashboard com a evolução temporal das intenções de votos.
+
+Como usar:
+
+Acesse no navegador:
+
+```
+http://localhost:3000/dashboard
+```
+
+Estrutura do Projeto
+
+/teste-pesquisa-eleitoral
+├── /src
+│   ├── /routes
+│   ├── /services
+│   ├── /utils
+│   ├── /views
+│   └── app.js
+├── /data
+│   ├── P1.csv
+│   ├── pesquisas.json
+│   └── municipios-estados.json
+├── package.json
+└── README.md
+
+
+Dependências
+Express: Framework para criar o servidor.
+
+Axios: Para fazer requisições HTTP à API do IBGE.
+
+csv-parser: Para ler arquivos CSV.
+
+ejs: Para renderizar o dashboard.
+
+Instale as dependências com:
+
+```bash
+
+npm install express axios csv-parser ejs
+
+```
+
+Contribuição
+Sinta-se à vontade para contribuir com melhorias, correções ou novas funcionalidades. Abra uma issue ou envie um pull request.
+
+Licença
+Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
+
+Copy
+
+---
+
+### Como Adicionar ao Repositório
+
+1. Copie o conteúdo acima.
+2. Crie um arquivo chamado `README.md` na raiz do seu projeto.
+3. Cole o conteúdo no arquivo.
+4. Salve o arquivo.
+5. Adicione o arquivo ao Git, faça commit e envie para o repositório:
+
+   ```bash
+   git add README.md
+   git commit -m "Adiciona README.md"
+   git push
